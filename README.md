@@ -1,4 +1,4 @@
-# ML Optimization from Scratch
+# Optimization Methods for Machine Learning — From Scratch
 
 Implementation and comparison of optimization methods for binary classification using a shallow neural network and a nonlinear SVM.
 
@@ -17,7 +17,7 @@ This project was originally developed for the **Optimization Methods for Machine
 - Train-only feature scaling to avoid data leakage
 - Comparison of predictive performance and computational cost
 
-> The core model logic is implemented directly with NumPy/SciPy/CVXOPT rather than high-level model APIs such as PyTorch, TensorFlow, or `sklearn.neural_network`.
+> The model formulations, analytical gradients, block-coordinate strategy, dual SVM setup, and MVP decomposition were implemented directly. General-purpose numerical solvers are used only where explicitly indicated.
 
 ## Reported results
 
@@ -29,6 +29,18 @@ The following results come from the original university experiment and are inclu
 | MLP — Two-block | 94.52% | 96.15% | 96.54% | Exact output-layer solve + L-BFGS-B |
 | SVM — CVXOPT | 95.29% | 96.15% | 95.77% | Dual QP with Gaussian kernel |
 | SVM — MVP | — | 96.15% | 95.77% | Custom pairwise decomposition |
+
+### Computational comparison
+
+The full-gradient MLP achieved the same test accuracy as the two-block method while requiring substantially fewer function evaluations and less computational time.
+
+![MLP computational cost](results/mlp_computational_cost.png)
+
+### SVM classification performance
+
+Both SVM optimization approaches achieved the same test accuracy and produced the same test-set confusion matrix.
+
+![SVM confusion matrix](results/svm_confusion_matrix.png)
 
 Additional optimization results:
 
